@@ -14,7 +14,7 @@ declare module 'express-session' {
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', process.cwd() + '/public/templates')
+app.set('views', __dirname + '/../public/templates')
 
 const jsonBody = body.json({
     type: '*/*'
@@ -39,7 +39,7 @@ app.post('/msg', jsonBody, (req, res) => {
 });
 
 app.get('/msg', (req, res) => {
-    res.render('message', { lastMessage: String(req.session.message) });
+    res.render('message', { lastMessage: String(req.session.message), cwd: process.cwd(), __dirname });
 });
 
 app.listen(port, () => {
