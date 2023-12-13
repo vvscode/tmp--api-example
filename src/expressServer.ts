@@ -13,6 +13,9 @@ declare module 'express-session' {
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', process.cwd() + '/public/templates')
+
 const jsonBody = body.json({
     type: '*/*'
 });
@@ -25,7 +28,7 @@ app.use(express.static('public', {
     index: 'index.htm'
 }));
 
-app.post('/login', jsonBody, (req, res) => {
+app.post('/msg', jsonBody, (req, res) => {
     const { login, passwd } = req.body;
     // check if valid
     if (login === 'admin' && passwd === 'admin') {
@@ -36,10 +39,7 @@ app.post('/login', jsonBody, (req, res) => {
 });
 
 app.get('/msg', (req, res) => {
-    console.log(req.session);
-    res.json({
-        last_message: String(req.session.message),
-    })
+    res.render('message', { lastMessage: String(req.session.message) });
 });
 
 app.listen(port, () => {
