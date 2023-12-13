@@ -16,6 +16,10 @@
         "dest": "src/expressServer.ts"
       },
       {
+        "src": "/list",
+        "dest": "src/expressServer.ts"
+      },
+      {
         "src": "/",
         "dest": "public/index.htm"
       },

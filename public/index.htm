@@ -9,6 +9,20 @@
 </head>
 <body>
     <h1>Hello</h1>
+
+    <form>
+        <input autofocus placeholder="Put your message" required />
+        <button>send</button>
+    </form>
+
+    <a href="/msg" target="_blank">Check your message</a>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', (ev) => {
+            ev.preventDefault();
+            fetch('/msg', { method: 'POST', body: JSON.stringify({msg: ev.target.querySelector('input').value }) }).then(r => r.text()).then(alert).then(() => window.open('/msg', ));
+        });
+    </script>
     
 </body>
 </html>
