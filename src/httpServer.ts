@@ -1,7 +1,7 @@
 import http from 'node:http';
 
 const server = http.createServer((req, res) => {
-    res.write('Hello' as string);
+    res.write('Hello bro 222' as string);
     res.end();
 });
 
